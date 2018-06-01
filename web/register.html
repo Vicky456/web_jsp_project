@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <style>
+        .bgimg{
+            position:fixed ;
+            width: 100%;
+            height: 100%;
+            filter: blur(3px);
+            transform: scale(1.1);
+            z-index: -9;
+        }
+        .bgvideo{
+            position:fixed ;
+            width: 100%;
+            height: 100%;
+            filter: blur(0px);
+            transform: scale(1.1);
+            z-index: -9;
+        }
+
+        .login_div {
+            width: 32%;
+            height: 85%;
+            background: #ffffffe3;
+            z-index: 9;
+            position: absolute;
+            top: 10%;
+            left: 37%;
+            border-radius: 2%;
+            overflow: hidden;
+        }
+
+        @keyframes anm-from {
+            0% {
+                transform: translate(0em,-5em);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translate(0em);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!--<img class="bgimg" src="img/Photoshop-Replace-Background-Featured.jpg">-->
+<video class="bgvideo" muted autoplay >
+    <source src="video/ezgif.com-video-cutter.mp4">
+</video>
+
+<div class="login_div row">
+    <h3 class="center-align">Sign up</h3>
+    <h6 class="center-align" id="ee">Your Account</h6>
+    <form action="/web_project/register" method="post" class="col m10 offset-m1" id="email_form">
+
+    <div class="input-field">
+        <input id="name" type="text" name="name" class="validate " value="">
+        <label for="name">Name</label>
+    </div>
+
+    <div class="input-field">
+        <input id="email" type="email" name="email" class="validate " value="" onblur="fun_errorck(this)" onfocus="document.getElementById('email_error').style.display='none';document.getElementById('btn').className=' btn light-green white-text waves-light waves-effect ';">
+        <label for="email">Email</label>
+        <span style="color: red;font-size: 10px;display: none" id="email_error">Email used already</span>
+    </div>
+
+    <div class="input-field">
+        <input id="phone" type="number" name="phone" class="validate " value="">
+        <label for="phone">Phone no</label>
+    </div>
+    <div class="input-field">
+        <input id="pass" type="password" name="pass" class="validate " value="">
+        <label for="pass">Password</label>
+    </div>
+    <div class="input-field">
+        <input id="dob" type="date" name="dob" class="validate " value="">
+        <label for="dob">DOB</label>
+    </div>
+    <div class="row">
+        <div class="col m4">
+            <label>
+                <input id="male" type="radio" name="gender" class="with-gap" value="male" >
+                <span>Male</span>
+            </label>
+
+        </div>
+        <div class="col m4">
+            <label>
+            <input id="female" type="radio" name="gender" class="with-gap " value="female">
+            <span>Female</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="col m12">
+        <button type="button" class="btn light-green white-text waves-light waves-effect " style="float: right" id="btn" onclick="fun_ck_email(this);">next</button>
+    </div>
+
+</form>
+
+
+<<div style="
+    position:  fixed;
+    bottom:  0;
+    padding-left: 50%;
+    padding-bottom: 3%;
+">
+
+    <a href="login.html" class="white-text col m12 center-align">Sign in</a>
+
+</div>
+
+
+
+
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script src="js/jquery-3.3.1.js"></script>
+
+<script>
+
+
+
+
+    function fun_ck_email(e) {
+
+                var name=document.getElementById('name').value;
+                var email=document.getElementById('email').value;
+                var phone=document.getElementById('phone').value;
+                var dob=document.getElementById('dob').value;
+                var gen=document.getElementById('male').checked==true?'male':'female';
+                var pass=document.getElementById('pass').value;
+
+
+               $.post("http://localhost:8080/auth/register",{name:name,email:email,phone:phone,dob:dob,gender:gen,pass:pass}).done(function (data) {
+
+
+
+                    if(data.result){
+
+                        window.location.href="welcome.html";
+
+                        localStorage.setItem("email",email);
+
+                    }
+                });
+
+        };
+    
+    
+    function fun_submit() {
+
+        var email=document.getElementById('email').value;
+        var pass=document.getElementById('pass').value;
+        $.get("http://localhost:8080/auth/email_ck?email="+email+"&pass="+pass).done(function (data) {
+
+
+
+            if(data.result){
+
+                window.location.href="welcome.html";
+
+
+            }
+        });
+    }
+
+
+    function fun_errorck(e) {
+
+        var email=e.value;
+        $.get("http://localhost:8080/auth/email_ck?email="+email).done(function (data) {
+
+            if(data.result){
+
+
+
+                document.getElementById('email_error').style.display='block';
+                document.getElementById('btn').className+=' disabled';
+
+
+
+
+            }
+
+
+        });
+    }
+
+
+
+
+</script>
+</body>
+</html>

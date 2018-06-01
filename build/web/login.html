@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <style>
+        .bgimg{
+            position:fixed ;
+            width: 100%;
+            height: 100%;
+            filter: blur(3px);
+            transform: scale(1.1);
+            z-index: -9;
+        }
+        .bgvideo{
+            position:fixed ;
+            width: 100%;
+            height: 100%;
+            filter: blur(0px);
+            transform: scale(1.1);
+            z-index: -9;
+        }
+
+        .login_div {
+            width: 32%;
+            height: 44%;
+            background: #ffffffe3;
+            z-index: 9;
+            position: absolute;
+            top: 43%;
+            left: 37%;
+            border-radius: 2%;
+            overflow: hidden;
+        }
+
+        @keyframes anm-from {
+            0% {
+                transform: translate(0em,-5em);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translate(0em);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!--<img class="bgimg" src="img/Photoshop-Replace-Background-Featured.jpg">-->
+<video class="bgvideo" muted autoplay loop>
+    <source src="video/ezgif.com-video-cutter.mp4">
+</video>
+
+<div class="login_div row">
+    <h3 class="center-align">Sign in</h3>
+    <h6 class="center-align" id="ee">Your Account</h6>
+<div class="col m10 offset-m1" id="email_form">
+
+    <div class="input-field">
+        <input id="email" type="email" name="email" class="validate " value="">
+        <label for="email">Email</label>
+    </div>
+
+    <div class="col m12 offset-m4">
+        <button type="button" class="btn light-green white-text waves-light waves-effect"  onclick="fun_ck_email(this);">next</button>
+    </div>
+
+
+</div>
+    <form method="post" action="/web_project/login" id="pass_form" style="display: none;animation: anm-from 0.21s ease-in-out;" class="col m10 offset-m1">
+        <input type="hidden" name="email" value="" id="email_hi"/>
+        <div class="input-field">
+            <input id="pass" type="password" name="pass" class="validate " value="">
+            <label for="pass">Password</label>
+        </div>
+
+        <div class="col m12 offset-m4">
+            <button type="submit" class="btn light-green white-text waves-light waves-effect" id="sign" >sign in</button>
+        </div>
+    </form>
+</div>
+
+<div style="
+    position:  fixed;
+    bottom:  0;
+    padding-left: 50%;
+    padding-bottom: 3%;
+">
+
+    <a href="register.html" class="white-text col m12 center-align">Sign up</a>
+
+</div>
+
+
+
+
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script src="js/jquery-3.3.1.js"></script>
+
+<script>
+
+
+
+
+    function fun_ck_email(e) {
+
+                var email=document.getElementById('email').value;
+
+
+                $.get("http://localhost:8080/auth/email_ck?email="+email).done(function (data) {
+
+
+
+                    if(data.result){
+
+                        document.getElementById('ee').innerText=email;
+                        console.log("working");
+
+                        document.getElementById('email_form').style.display='none';
+                        document.getElementById('pass_form').style.display='block';
+                        
+                        document.getElementById('email_hi').value=email;
+
+                    }
+                });
+
+        };
+    
+    
+    function fun_submit() {
+
+        var email=document.getElementById('email').value;
+        var pass=document.getElementById('pass').value;
+        $.get("http://localhost:8080/auth/email_ck?email="+email+"&pass="+pass).done(function (data) {
+
+
+
+            if(data.result){
+
+                window.location.href="welcome.html";
+
+
+            }
+        });
+    }
+
+
+
+
+</script>
+</body>
+</html>

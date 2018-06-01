@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game page</title>
+    <link href="css/style.css" rel="stylesheet" rev="stylesheet" type="text/css">
+</head>
+<body>
+<div id="root" class="box">
+
+</div>
+
+
+
+<div>
+    <div id="root_d" >
+
+        <div class="blo_cube" style="width: 70px;height: 70px;box-shadow: 0px 2px 6px -2px;float:  right;margin-right: 28%;margin-top: 14%;"><b style="margin: 11% 43%;font-size:  2em;float: left;">.<b></b></b></div>
+
+        <div class="blo_cube" style="width: 70px;height: 70px;box-shadow: 0px 2px 6px -2px;float:  right;margin-right: 28%;margin-top: 14%;">
+            <b style="margin: 12% 29%;font-size:  2em;float: left;">.<b></b></b><b style="margin: -65% 57%;font-size:  2em;float: left;">.<b></b></b></div>
+
+
+        <div class="blo_cube" style="width: 70px; height: 70px; box-shadow: 0px 2px 6px -2px; float: right; margin-right: 28%; margin-top: 14%;">
+            <b style="margin: 12% 20%;font-size:  2em;float: left;">.<b></b></b>
+            <b style="margin: -65% 44%;font-size:  2em;float: left;">.<b></b></b><b style="margin: -65% 68%;font-size:  2em;float: left;">.<b></b></b></div>
+
+
+        <div class="blo_cube" style="width: 70px; height: 70px; box-shadow: 0px 2px 6px -2px; float: right; margin-right: 28%; margin-top: 14%;">
+            <b style="margin: -5% 22%;font-size:  2em;float: left;">.<b></b></b>
+            <b style="margin: -47% 58%;font-size:  2em;float: left;">.<b></b></b>
+            <b style="margin: -9% 60%;font-size:  2em;float: left;">.<b></b></b><b style="margin: -44% 25%;font-size:  2em;float: left;">.<b></b></b></div>
+
+
+        <div class="blo_cube" style="width: 70px; height: 70px; box-shadow: 0px 2px 6px -2px; float: right; margin-right: 28%; margin-top: 14%;">
+            <b style="margin: 2% 20%;font-size:  2em;float: left;">.<b></b></b>
+            <b style="margin: -74% 44%;font-size:  2em;float: left;">.<b></b></b>
+            <b style="margin: -53% 68%;font-size:  2em;float: left;">.<b></b></b>
+            <b style="margin: -23% 68%;font-size:  2em;float: left;">.<b></b></b><b style="margin: -28% 21%;font-size:  2em;float: left;">.<b></b></b></div>
+
+
+        <div class="blo_cube" style="width: 70px; height: 70px; box-shadow: 0px 2px 6px -2px; float: right; margin-right: 28%; margin-top: 14%;">
+            <b style="margin: -3% 20%;font-size:  2em;float: left;">.<b></b></b>
+            <b style="margin: -51% 44%;font-size:  2em;float: left;">.<b></b></b>
+
+            <b style="margin: -51% 68%;font-size:  2em;float: left;">.<b></b></b>
+
+            <b style="margin: -16% 68%;font-size:  2em;float: left;">.<b></b></b>
+            <b style="margin: -37% 44%;font-size:  2em;float: left;">.<b></b></b><b style="margin: -37% 19%;font-size:  2em;float: left;">.<b></b></b></div>
+
+
+
+
+    </div>
+    <input type="button"  onclick="fun()" value="try this" id="try_btn" style="
+    position:  absolute;
+    margin-top: 24%;
+    margin-left: 62%;
+    width:  151px;
+    height: 57px;
+
+
+">
+    <input type="button"  onclick="play_ai()" value="try this player 2" id="try_btn2" style="
+    position:  absolute;
+    margin-top: 24%;
+    margin-left: 62%;
+    width:  151px;
+    height: 57px;
+    display: none;
+
+
+">
+
+
+    <h1 id="won" style="
+    position:  absolute;
+    margin-top:  32%;
+    margin-left: 54%;
+    color: #00f900;
+    font-size: 45px;
+    text-shadow: 1px 4px 8px #000;
+    font-family: monospace;
+">Player Won the Game</h1>
+
+
+    <h2 id="tit" style="
+    margin-left: 56%;
+    margin-top: 8px;
+    position:  absolute;
+    text-shadow: 1px 2px 7px #0006;
+    color: red;
+    font-size: 32px;
+">Play snake and ladder Game</h2>
+
+    <p id="round" style="
+    position:  absolute;
+    top: 89px;
+    right: 26%;
+    color: #03d603;
+    font-size: 21px;
+    text-shadow: 0px 2px 3px #000;
+">Round 1</p>
+
+
+
+    <div id="fit_div">
+        player 1<br><br>
+        <input type="text" placeholder="Username" id="username"><br><br>
+        <div>
+            <input type="radio" onclick="document.getElementById('play2_div').style.display='block';document.getElementById('str_ai').style.display='none';document.getElementById('str_ply').style.display='block';" value="Player2" name="play2">Player 2
+            <input type="radio" onclick="document.getElementById('play2_div').style.display='none';document.getElementById('str_ai').style.display='block';document.getElementById('str_ply').style.display='none';" value="Ai player" name="play2">Ai player
+        </div>
+        <br>
+        <div id="play2_div" style="display: none">
+            <input type="text" placeholder="player 2" id="play2">
+        </div><br>
+        <input type="button" onclick="fun_name(true)" style="display: none" id="str_ai" value="Start with AI">
+        <input type="button" onclick="fun_name(false)" style="display: none" id="str_ply" value="Start with player 2">
+    </div>
+</div>
+
+
+<div style="position:  absolute;width: 140px;height: 220px;top: 19%;right: 8%;" >
+    <b id="dei" style=" animation: 1s linear anm_dei;
+    left: 50%;
+    position:  relative;
+    top: 87%;font-size: 0px;display: none;
+">1</b>
+</div>
+
+<div id="snake" onclick="this.style.display='none';" style="
+    position:  absolute;
+    z-index:  999;
+    width:  100%;
+    background: #000000c9;
+    height:  100%;
+    margin-left:  -8px;
+    margin-top:  -8px;
+    display: none;
+">
+    <img src="img/giphy.gif" style="
+    margin: 16% 37%;
+">>
+</div>
+<div id="lad_div" onclick="this.style.display='none';" style="
+    position:  absolute;
+    z-index:  999;
+    width:  100%;
+    background: #000000c9;
+    height:  100%;
+    margin-left:  -8px;
+    margin-top:  -8px;
+    display: none;
+">
+    <img src="img/tumblr_mqv4llSaWJ1s3979jo1_500.gif" style="
+    margin: 10% 37%;
+    transform: rotatez(180deg);
+">
+</div>
+
+<div class="img_box box">
+    <img src="img/ladder_PNG14808.png" style="
+    width: 27px;
+    height: 296px;
+    position: relative;
+    top: -48%;
+    left: 47%;
+    transform: rotateZ(60deg);
+">
+
+
+    <img src="img/ladder_PNG14808.png" style="
+    width: 27px;
+    height: 296px;
+    position:  absolute;
+    top: 17%;
+    left: 33%;
+    transform: rotateZ(-46deg);
+">
+
+    <img src="img/ladder_PNG14808.png" style="
+    width: 26px;
+    height: 91px;
+    position: relative;
+    top: -113%;
+    left: 57%;
+    transform: rotateZ(0deg);
+">
+
+    <img src="img/images_ss.png" style="
+    width: 259px;
+    height: 24px;
+    position: relative;
+    top: -78%;
+    left: 18%;
+    transform: rotateZ(27deg);
+">
+
+    <img src="img/images_ss.png" style="
+    width: 394px;
+    height: 31px;
+    position: relative;
+    top: -121%;
+    left: 15%;
+    transform: rotateZ(158deg) rotateX(150deg);
+">
+
+
+    <img src="img/images_ss.png" style="
+    width: 252px;
+    height: 31px;
+    position: relative;
+    top: -153%;
+    left: 22%;
+    transform: rotateZ(158deg) rotateX(150deg);
+">
+
+
+
+</div>
+<script src="js/script_ai.js" async></script>
+
+
+</body>
+</html>
